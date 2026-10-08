@@ -1,5 +1,31 @@
 # OrdinalAnalysis
 
+> **This repository is a submission snapshot.**
+> It is a copy of [MaxWellApexLab/OrdinalAnalysis](https://github.com/MaxWellApexLab/OrdinalAnalysis)
+> at commit `53db882`, prepared for submissions to the
+> [Palomar registry](https://palomar-registry.org) of Lean-verified mathematics.
+> Development happens in the main repository; nothing here is maintained beyond the
+> Comparator scaffolding described below.
+>
+> This repository carries one Comparator configuration:
+>
+> | Configuration | Result | Modules | Metadata |
+> | --- | --- | --- | --- |
+> | `comparator.json` | Gentzen 1943: the proof-theoretic ordinal of Peano arithmetic is `ε₀` | `Challenge` / `Solution` | `formalization.yaml` |
+>
+> `Challenge.lean` imports Mathlib and nothing else, and states the result using Mathlib
+> notions only, so that it can be audited without reading the development: provability in
+> `PA[X]` is read through Gödel's completeness theorem as truth in every model, the ordering
+> `≺` on Cantor normal forms is characterized by its recursion in every model, and the two
+> halves of `|PA| = ε₀` are the two clauses `Upper` and `Lower`.  It contains a deliberate `sorry`:
+> the Comparator protocol requires the advertised statement to be given without a proof.
+> `Solution.lean` supplies a declaration of exactly that type, delegating through the translation
+> layer in `Bridge/` to the development (`OrdinalAnalysis/Gentzen/`), whose statement is phrased
+> with Foundation's proof system.  `Bridge/Defs.lean` is `Challenge.lean` minus the theorem,
+> character for character, so that the Solution environment contains the same definitions.
+> Everything else in this repository — the `Solution` module, `Bridge/`, and the whole library
+> they call — is free of `sorry` and of user-declared axioms.
+
 Proof-theoretic ordinal analysis in Lean 4, built on
 [mathlib](https://github.com/leanprover-community/mathlib4) and
 [FormalizedFormalLogic/Foundation](https://github.com/FormalizedFormalLogic/Foundation).

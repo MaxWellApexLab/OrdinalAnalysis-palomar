@@ -1,0 +1,284 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+#
+# Verified against the repository at the pinned commit.  The commit SHA must be
+# refreshed at submission time to the head that contains the Palomar scaffolding.
+
+version: "v0.4"
+
+project:
+  name: "OrdinalAnalysis"
+  description: >-
+    A Lean 4 development of proof-theoretic ordinal analysis, built on Mathlib and on the
+    Foundation library of first-order logic.  The result registered by this Comparator
+    configuration is Gentzen's theorem that the proof-theoretic ordinal of Peano arithmetic is
+    epsilon_0, in both halves: for the theory PA[X] (Peano arithmetic in the language
+    0, 1, +, *, < with one fresh unary predicate X, with induction for every formula of that
+    language), (upper bound) for every Cantor normal form a below epsilon_0 and every formula
+    phi, PA[X] proves transfinite induction for phi along the standard ordering of the normal
+    forms up to the numeral of the code of a, and (lower bound) PA[X] does not prove
+    transfinite induction along the whole ordering for the bare predicate X.  The statement is
+    given with Mathlib notions only: provability is read through Goedel's completeness theorem
+    as truth in every model of PA[X] (resp. as failure in some model), and the coded ordering
+    is not written as a formula but is an existentially quantified formula that in every model
+    of PA[X] obeys the Cantor-normal-form comparison recursion on Nat.pair-codes, agrees on the
+    natural numbers with Mathlib's order on notations (the order of the ordinals denoted), and
+    relates nothing but codes of normal forms.  The proof in the development is Gentzen's: an
+    internal notation system and the jump construction give the upper bound; embedding of
+    PA[X]-derivations into an infinitary calculus with an evaluating instantiation, cut
+    elimination with an explicit bound below epsilon_0, and a boundedness invariant give the
+    lower bound.  The submitted Solution transports these two theorems, which are stated with
+    Foundation's proof system, to the Mathlib-only statement through an explicit bridge between
+    the two libraries' structures and formulas.  The wider repository contains further ordinal
+    analyses: epsilon_1 for PA plus transfinite induction below epsilon_0, epsilon_{epsilon_0}
+    for the second-order theory ACA, Gamma_0-level results for ramified analysis and the
+    semiformal Feferman-Schuette theorem, the Bachmann-Howard ordinal for ID_1, and
+    psi_0(epsilon_{Omega_n+1}) for ID_n and ID_omega; none of them is part of this
+    registration.
+  authors:
+    - "KT. Wu"
+  responsible_maintainers:
+    - "KT. Wu"
+  license: "Apache-2.0"
+
+repository:
+  role: "substantive-development"
+
+sources:
+  - title: "Beweisbarkeit und Unbeweisbarkeit von Anfangsfällen der transfiniten Induktion in der reinen Zahlentheorie"
+    authors:
+      - "Gerhard Gentzen"
+    id: "Math. Ann. 119 (1943), 140–161"
+    type: "paper"
+    location: "the theorem as a whole: provability of transfinite induction below every notation less than epsilon_0 and unprovability of transfinite induction along epsilon_0"
+    relationship: "formalizes"
+    note: >-
+      The original source of both halves.  The development does not transcribe the 1943
+      argument: the upper bound is Gentzen's jump construction carried out on an arithmetization
+      of the notations inside PA, and the lower bound is the modern infinitary argument
+      (embedding, cut elimination, boundedness) of the tradition that follows Buchholz, not the
+      reduction of Gentzen's paper.
+    author_endorsement: "n/a"
+  - title: "Notation systems for infinitary derivations"
+    authors:
+      - "Wilfried Buchholz"
+    id: "Arch. Math. Logic 30 (1991), 277–296"
+    type: "paper"
+    location: "the infinitary calculus with evaluated closed terms and the embedding of arithmetic into it"
+    relationship: "adapts"
+    note: >-
+      The lower bound follows the infinitary approach of this paper, adapted to Foundation's
+      one-sided calculus and to the language with a fresh predicate X.  The normalising
+      instantiation (substitute the numeral, then evaluate closed terms) is the one place where a
+      naive calculus fails and the convention of the paper is needed; see the header of
+      `OrdinalAnalysis/Omega/Calculus.lean`.  The formalization is not a transcription of the
+      paper, and the exact form of the calculus is the development's own.
+    author_endorsement: "not-contacted"
+  - title: "Proof Theory: The First Step into Impredicativity"
+    authors:
+      - "Wolfram Pohlers"
+    id: "Universitext, Springer, 2009"
+    type: "book"
+    location: "the ordinal analysis of Peano arithmetic"
+    relationship: "background"
+    note: >-
+      A textbook treatment of the theorem, consulted for orientation only.  No statement or proof
+      of the book is formalized as such.
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/MaxWellApexLab/OrdinalAnalysis/tree/53db882"
+    relationship: "other"
+    note: >-
+      Provenance rather than a separate formalization.  This repository is a frozen snapshot of
+      that repository at commit 53db882, made for this submission; the same Lean sources of the
+      library are present in both.  Development continues there and not here.
+  - id: "https://github.com/FormalizedFormalLogic/goodstein-independence"
+    relationship: "other"
+    note: >-
+      Not a formalization of this theorem.  The repository proves the consistency of Peano
+      arithmetic and Goodstein independence (by the fast-growing-hierarchy route) with an
+      infinitary calculus and cut elimination; it does not contain the ordinal analysis in the
+      transfinite-induction form registered here.  The search behind this remark was informal
+      and is not claimed to be exhaustive.
+
+classification:
+  arxiv:
+    - "math.LO"
+  msc2020:
+    - "03F15"   # Recursive ordinals and ordinal notations
+    - "03F03"   # Proof theory, general
+    - "03F05"   # Cut-elimination and normal-form theorems
+    - "03F30"   # First-order arithmetic and fragments
+
+status:
+  scope: >-
+    This Comparator configuration registers exactly one theorem, Gentzen's theorem
+    `|PA| = ε₀`, stated in `Challenge.lean` and proved in `Solution.lean`.  The proof consists of
+    the translation layer in `Bridge/` and the two directions of the development's theorem
+    (`gentzen_upper_bound` and `gentzen_lower_bound` in `OrdinalAnalysis/Gentzen/`), which are
+    stated with Foundation's proof system; the arithmetization facts about the coded ordering
+    are those of `OrdinalAnalysis/Gentzen/InternalONote.lean`.  The rest of the repository is
+    present at the pinned commit but is not part of this registration.  Outside the single
+    deliberate `sorry` placeholder in `Challenge.lean`, the repository at the pinned commit
+    contains no `sorry` and no user-declared axiom anywhere.
+  sorry_count: 1
+  sorry_note: >-
+    The single `sorry` in this snapshot is the Comparator protocol placeholder in
+    `Challenge.lean`, one placeholder for the one registered theorem.  A challenge module states
+    its advertised theorem without proving it, so that the statement can be audited on its own;
+    `Solution.lean` supplies a declaration of exactly that type together with its proof.  No
+    module of the library, of `Bridge/`, or `Solution.lean` contains a `sorry`, and the
+    registered declaration is audited by `PalomarAudit.lean`, which reports exactly
+    `[propext, Classical.choice, Quot.sound]`, so no `sorryAx` is in its dependency graph.
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Classical.choice"
+    - "Quot.sound"
+  main_results:
+    - declaration: "GentzenEpsilon0.gentzen_theorem"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms:
+        - "propext"
+        - "Classical.choice"
+        - "Quot.sound"
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+fidelity:
+  divergences: >-
+    Five points where the Lean statement of record differs in form from the informal theorem,
+    none of which changes its strength as far as the authors can tell; item (2) is the one a
+    reviewer should read first.
+
+    (1) Provability is semantic.  Mathlib has no proof system for first-order logic, so
+    `PA[X] ⊢ φ` is read as "`φ` holds in every model of `PA[X]`" and `PA[X] ⊬ φ` as "some model of
+    `PA[X]` falsifies `φ`".  By Gödel's completeness theorem this is the same as derivability in
+    any standard calculus; the Solution obtains the two halves from theorems stated with
+    Foundation's proof system by exactly this passage, together with the identification of the
+    Challenge's models with Foundation's models of the development's theory `paLX`.  Models
+    live in `Type` (universe 0); by Löwenheim–Skolem this is immaterial.
+
+    (2) The ordering is existentially quantified and characterized, not written down.  The
+    coded ordering `≺` of the development is a Σ₁ formula built from primitive-recursion
+    machinery, far too large to restate in a Challenge file.  The Challenge instead states
+    `∃ prec, IsCNFOrder prec ∧ Standard prec ∧ Field prec ∧ Upper prec ∧ Lower prec`, where
+    `IsCNFOrder` says that in every model of `PA[X]` the formula obeys the Cantor-normal-form
+    comparison recursion on the `Nat.pair`-based codes, `Standard` and `Field` tie it in `ℕ` to
+    Mathlib's order on `ONote`, and `Upper`/`Lower` are the two halves.  Two formulas that obey
+    the recursion in every model are provably equivalent in `PA` (strong induction on a code in
+    an arbitrary model), so the existential form is equivalent to the universal one; that
+    equivalence is *not* formalized here.  What is formalized is the harder direction for a
+    witness: the development's ordering formula, read through the bridge, satisfies all five
+    conjuncts.
+
+    (3) The induction scheme.  `Induction` quantifies over every Mathlib `LX`-formula in one
+    bound variable with natural-number parameters, including those mentioning `X`, exactly as
+    the development's `InductionScheme LX Set.univ` quantifies over `Semiformula LX ℕ 1`.
+    `PAminus` lists the seventeen axioms of `PA⁻` of the development one by one; the equality
+    axioms are absorbed by real equality.
+
+    (4) Numerals and codes.  The numeral of a code is `Interp.nat`, the iterated successor of
+    `0`, which is the development's numeral in every model of `PA⁻`; the code of a notation is
+    the development's `code` verbatim, with Szudzik's pairing.
+
+    (5) Bound-variable order.  Mathlib quantifies the last bound variable and Foundation the
+    first; the bridge translates `i : Fin n` to `Fin.rev i`, and the two evaluation lemmas
+    (`Bridge/Formula.lean`) are stated with that reversal.  This affects the Solution only.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "KT. Wu"
+  notes: >-
+    No external or peer review has taken place.  What was actually run, at the pinned commit:
+    a full `lake build` of the repository and of the `Challenge` and `Solution` libraries
+    against the pinned Mathlib and Foundation revisions with toolchain leanprover/lean4:v4.33.0;
+    a repository-wide scan for `sorry` and for user-declared `axiom`, both empty outside the
+    deliberate `sorry` placeholder in `Challenge.lean`; the axiom gate
+    `scripts/AxiomCheck.lean`, which runs guarded `#print axioms` on the headline declarations
+    of the library, every one reporting only `[propext, Classical.choice, Quot.sound]`; and
+    `PalomarAudit.lean` for the registered declaration.  The Challenge statement was read
+    clause by clause against the informal theorem.  That the clauses of `IsCNFOrder` describe
+    the intended ordering is not left to that reading alone: the Solution proves `IsCNFOrder`,
+    `Standard` (agreement with the order of `ONote` on the codes of normal forms) and `Field`
+    for the development's ordering formula (`isCNFOrder_precM`, `standard_precM` and
+    `field_precM` in `Bridge/Order.lean`), so the recursion clauses and `ONote`'s order are
+    shown to coincide by proof, not by sampling.
+
+automation:
+  methods:
+    - method: "agent"
+      models:
+        - "Anthropic Claude"
+      models_note: >-
+        Recorded at vendor level only.  The development ran across many sessions between
+        August and September 2026 and the repository does not record which Claude model
+        served each session, so no exact model identifier is claimed here rather than a
+        guessed one.
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-generated Lean under human direction, in an agentic terminal loop with filesystem
+        and shell access to the repository: the agent read the pinned Mathlib and Foundation
+        checkouts under `.lake/packages` to confirm lemma names and signatures, wrote the Lean
+        source, and iterated against `lake build` (run on a remote build machine) until the
+        files compiled with no errors and no warnings.  Human direction consisted of setting the
+        targets (the ordinal analyses, and for this registration a Mathlib-only statement of
+        Gentzen's theorem with a bridge to the development), the standing acceptance criteria
+        (zero `sorry`, zero custom axioms, zero errors, zero warnings, project style), and the
+        decision to attack each front; the human did not write the Lean proof text.  No
+        proof-search tactic beyond Mathlib's and Foundation's own automation was used; no
+        external premise-selection or proof-search service was involved.
+      cost:
+        hardware: "API-only (no local model inference); development on a single workstation with a second machine for builds"
+      prompting_notes: >-
+        The task specification for the bridge was a written recon-and-design document prepared
+        by the same agentic process: it fixed the shape of the Challenge statement (semantic
+        provability, characterized ordering), and set out the bridge at lemma granularity with
+        an estimate of size and risk.  The standing instruction across the project was
+        "0 sorry, 0 custom axiom, 0 error, 0 warning; match existing project style".
+  notes: >-
+    The whole repository is AI-generated Lean produced under human direction.  Responsibility for
+    the correctness and for the claims made in this file rests with the named author and
+    maintainer, not with the model or the tooling.  The mechanical guarantees offered are exactly
+    those the build and the axiom audit provide: the development compiles against the pinned
+    Mathlib and Foundation revisions and the registered theorem depends on no axiom beyond
+    `propext`, `Classical.choice` and `Quot.sound`.
+
+alignment:
+  namespace: "GentzenEpsilon0"
+  statements:
+    - source: "Gentzen 1943, Math. Ann. 119 (the ordinal analysis of Peano arithmetic)"
+      lean: "GentzenEpsilon0.gentzen_theorem"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The registered declaration.  Same type as `GentzenEpsilon0.gentzen_theorem` in the
+        `Challenge` module, which states it with the proof left as `sorry`.  Proved by exhibiting
+        the development's ordering formula, read as a Mathlib formula, and closing the five
+        conjuncts through the bridge.
+    - source: "Gentzen 1943 — the underlying development, in Foundation's proof system"
+      lean: "OrdinalAnalysis.Gentzen.gentzen_theorem"
+      module: "OrdinalAnalysis.Gentzen.GentzenTheorem"
+      status: "proved"
+      note: >-
+        `paLX` proves `closedTI φ ⌜a⌝` for every formula `φ` and normal form `a`
+        (`gentzen_upper_bound`), and does not prove `TI ≺` (`gentzen_lower_bound`); both are
+        used by the Solution.  The upper bound is in `OrdinalAnalysis/Gentzen/UpperBound.lean`
+        and its dependencies, the lower bound in `LowerBound.lean` and the infinitary calculus
+        of `OrdinalAnalysis/Omega/`.
+    - source: "The universal form of the ordering clause: every formula obeying the recursion agrees with the coded ordering"
+      lean: "—"
+      module: "—"
+      status: "not-formalized"
+      note: >-
+        See `fidelity.divergences` item (2).  Not needed by the registered statement.
+
+acknowledgements: >-
+  The development relies on Mathlib, at revision db584cd6d46c92f209a44c0f1c829460d327499d of
+  leanprover-community/mathlib4, for its ordinal-notation and model-theory libraries, and on the
+  Foundation library of first-order logic of FormalizedFormalLogic, at the revision pinned in
+  `lake-manifest.json`, for the syntax, semantics, completeness theorem and arithmetization of
+  syntax on which the ordinal analysis is built.  Thanks to both communities.  The Lean was
+  produced by an AI coding agent under human direction, as recorded in `automation` above.
