@@ -3,7 +3,10 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Mathlib
+
+module
+
+public import Mathlib
 
 /-!
 # The definitions of `Challenge`, verbatim
@@ -13,6 +16,8 @@ statement of `gentzen_theorem`, character for character.  It exists so that the 
 environment contains the same declarations, with the same names and bodies, as the `Challenge`
 environment, which is what the Comparator compares.  Do not edit by hand.
 -/
+
+@[expose] public section
 
 open FirstOrder FirstOrder.Language
 

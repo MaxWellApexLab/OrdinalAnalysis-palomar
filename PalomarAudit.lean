@@ -13,7 +13,13 @@
   The `Challenge` module is deliberately not audited: it states its theorem and proves it by
   `sorry`, which is the Comparator protocol.
 -/
-import Solution
+
+module
+
+public import Solution
 
 -- comparator.json
+
+@[expose] public section
+
 #print axioms GentzenEpsilon0.gentzen_theorem

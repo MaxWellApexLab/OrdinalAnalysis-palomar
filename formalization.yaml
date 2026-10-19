@@ -86,11 +86,11 @@ sources:
     author_endorsement: "not-contacted"
 
 related_formalizations:
-  - id: "https://github.com/MaxWellApexLab/OrdinalAnalysis/tree/53db882"
+  - id: "https://github.com/MaxWellApexLab/OrdinalAnalysis/tree/b033c97"
     relationship: "other"
     note: >-
       Provenance rather than a separate formalization.  This repository is a frozen snapshot of
-      that repository at commit 53db882, made for this submission; the same Lean sources of the
+      that repository at commit b033c97, made for this submission; the same Lean sources of the
       library are present in both.  Development continues there and not here.
   - id: "https://github.com/FormalizedFormalLogic/goodstein-independence"
     relationship: "other"

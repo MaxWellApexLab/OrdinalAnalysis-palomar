@@ -3,7 +3,10 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Mathlib
+
+module
+
+public import Mathlib
 
 /-!
 # Challenge file: the proof-theoretic ordinal of Peano arithmetic is `ε₀` (Gentzen 1943)
@@ -72,6 +75,8 @@ of `PA[X]`", and `PA[X] ⊬ φ` means "some model of `PA[X]` falsifies `φ`".  M
 Reference: G. Gentzen, *Beweisbarkeit und Unbeweisbarkeit von Anfangsfällen der transfiniten
 Induktion in der reinen Zahlentheorie*, Math. Ann. **119** (1943), 140–161.
 -/
+
+@[expose] public section
 
 open FirstOrder FirstOrder.Language
 

@@ -3,7 +3,10 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Formula
+
+module
+
+public import Bridge.Formula
 
 /-!
 # Bridge, step 3: `IsPA` is "model of `paLX`"
@@ -21,6 +24,8 @@ translations of `Bridge.Formula`.
 Also `isPA_ofF`: a Foundation structure with real equality that models `paLX` gives an
 `IsPA`-interpretation.
 -/
+
+@[expose] public section
 
 set_option linter.style.haveILetI false
 

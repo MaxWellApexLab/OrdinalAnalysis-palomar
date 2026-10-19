@@ -3,9 +3,12 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Prec
-import OrdinalAnalysis.Gentzen.CodeSurj
-import OrdinalAnalysis.Gentzen.PrecStandard
+
+module
+
+public import Bridge.Prec
+public import OrdinalAnalysis.Gentzen.CodeSurj
+public import OrdinalAnalysis.Gentzen.PrecStandard
 
 /-!
 # Bridge, step 5: the clauses of `Challenge` for the development's ordering
@@ -23,6 +26,8 @@ proves the three clauses of `Challenge` that concern the ordering alone:
 Conventions: `V` is a type with `[ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗜𝚺₁]`, exactly as in the
 `InternalONote` layer.
 -/
+
+@[expose] public section
 
 set_option linter.style.haveILetI false
 

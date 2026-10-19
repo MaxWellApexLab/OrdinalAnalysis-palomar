@@ -3,8 +3,11 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Order
-import OrdinalAnalysis.Gentzen.GentzenTheorem
+
+module
+
+public import Bridge.Order
+public import OrdinalAnalysis.Gentzen.GentzenTheorem
 
 /-!
 # Bridge, step 6: the two halves
@@ -23,6 +26,8 @@ The two reading lemmas `eval_tiUptoAt` and `eval_TI` are generic in the ordering
 formula `φ`: no concrete formula of the development is ever unfolded (this keeps the kernel work of
 the second-kernel check small).
 -/
+
+@[expose] public section
 
 set_option linter.style.haveILetI false
 

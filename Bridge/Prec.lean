@@ -3,8 +3,11 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.PA
-import OrdinalAnalysis.Gentzen.CodedNotation
+
+module
+
+public import Bridge.PA
+public import OrdinalAnalysis.Gentzen.CodedNotation
 
 /-!
 # Bridge, step 4: the ordering formula and the arithmetic reading of a model of `PA`
@@ -18,6 +21,8 @@ import OrdinalAnalysis.Gentzen.CodedNotation
 * `prec_precCode_iff` specializes this to `precCode`, whose value does not depend on the free
   variables.
 -/
+
+@[expose] public section
 
 set_option linter.style.haveILetI false
 

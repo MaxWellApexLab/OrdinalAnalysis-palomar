@@ -3,7 +3,10 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Structure
+
+module
+
+public import Bridge.Structure
 
 /-!
 # Bridge, step 2: formulas
@@ -23,6 +26,8 @@ translated to `Fin.rev i`, and both evaluation lemmas read
 Both translations are structural recursions that are only ever *applied to abstract formulas* in
 lemmas; nothing here is unfolded on a concrete formula.
 -/
+
+@[expose] public section
 
 namespace GentzenEpsilon0
 namespace Bridge

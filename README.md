@@ -2,7 +2,7 @@
 
 > **This repository is a submission snapshot.**
 > It is a copy of [MaxWellApexLab/OrdinalAnalysis](https://github.com/MaxWellApexLab/OrdinalAnalysis)
-> at commit `53db882`, prepared for submissions to the
+> at commit `b033c97`, prepared for submissions to the
 > [Palomar registry](https://palomar-registry.org) of Lean-verified mathematics.
 > Development happens in the main repository; nothing here is maintained beyond the
 > Comparator scaffolding described below.

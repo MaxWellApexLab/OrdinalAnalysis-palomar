@@ -3,8 +3,11 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Defs
-import OrdinalAnalysis.Gentzen.Setup
+
+module
+
+public import Bridge.Defs
+public import OrdinalAnalysis.Gentzen.Setup
 
 /-!
 # Bridge, step 1: structures
@@ -19,6 +22,8 @@ evaluated with Mathlib's model theory.  The development speaks about Foundation'
   definitionally (`ofF_fstr`).
 * `fstr_ofF` : for a structure with real equality, `fstr (ofF s) = s`.
 -/
+
+@[expose] public section
 
 namespace GentzenEpsilon0
 namespace Bridge

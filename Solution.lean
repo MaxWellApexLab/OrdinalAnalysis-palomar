@@ -3,7 +3,10 @@ Copyright (c) 2026 KT. Wu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KT. Wu
 -/
-import Bridge.Bounds
+
+module
+
+public import Bridge.Bounds
 
 /-!
 # Solution file: the proof-theoretic ordinal of Peano arithmetic is `ε₀` (Gentzen 1943)
@@ -31,6 +34,8 @@ The proof delegates to the development:
   `gentzen_lower_bound` of the development (`OrdinalAnalysis/Gentzen/`), read through that
   translation.
 -/
+
+@[expose] public section
 
 namespace GentzenEpsilon0
 
